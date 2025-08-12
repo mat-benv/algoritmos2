@@ -10,8 +10,9 @@ caracteres e determinar quais delas são palíndromes.*/
 
 int main(){
 
-    string pal, lap;
+    string pal;
     char opt;
+    bool isPalin;
 
     do{
         do{
@@ -21,9 +22,28 @@ int main(){
 
         }while(pal.empty());
 
-        for(unsigned int i = 0; i < pal.size(); i++){
-            
+        unsigned long length = pal.length();
+        isPalin = true;
+
+        for(unsigned i = 0; i < length/2; i++){
+            if(toupper(pal[i]) != toupper(pal[length-1-i])){
+                isPalin = false;
+                break;
+            }
         }
+
+        if(isPalin){
+            cout << pal << " é um palíndromo.\n";
+        } else {
+            cout << pal << " não é palíndromo.\n";
+        }
+
+        do{
+            cout << "Continuar? S/N \n";
+            cin >> opt;
+        }while(toupper(opt) != 'S' && toupper(opt) != 'N');
+
+        cin.ignore();
 
     }while(toupper(opt) != 'N');
 
