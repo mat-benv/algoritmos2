@@ -12,30 +12,24 @@ int main(){
     string stringS;
     char c;
     unsigned int i;
-    bool valid;
 
     do{
-        valid = true;
         cout << "Input a sentence: \n"; getline(cin, stringS);
-        if(stringS == "") valid = false;
-        if(not valid) cout << "Invalid input, try again.\n";
-    }while(not valid);
+        if(stringS.empty()) cout << "Invalid input, try again.\n";
+    }while(stringS.empty());
 
     const long unsigned int max = stringS.length()-1;
-
+    
     cout << "Input a character to find: \n"; cin >> c;
 
     do{
-        valid = true;
         cout << "Input a position to search from: \n"; cin >> i;
-        if(i > max) valid = false;
-        if(not valid) cout << "Position is greater than sentence length. Try again.\n";
+        if(i > max) cout << "Position is greater than sentence length. Try again.\n";
+    }while(i > max);
 
-    }while(not valid);
-
-    for(unsigned int j = i; j < max; j++){
-        if(toupper(stringS[j]) == toupper(c)){
-            cout << "Índice: " << j;
+    for(; i <= max; i++){
+        if(toupper(stringS[i]) == toupper(c)){
+            cout << "Índice: " << i;
             break;
         }
     }

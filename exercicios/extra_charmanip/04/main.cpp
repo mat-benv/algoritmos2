@@ -10,29 +10,24 @@ int main(){
 
     string stringA;
     char l1=' ', l2=' ';
-    bool valid;
 
     do{
-        valid = true;
+
         cout << "Input a sentence: \n"; getline(cin, stringA);
-        if(stringA == "") valid = false;
-    }while(not valid);
+ 
+    }while(stringA.empty());
 
     do{
-        valid = true;
         cout << "Input the letter to be replaced: \n";
         cin >> l1;
-        if(not isalpha(l1)) valid = false;
-        if(not valid) cout << "Invalid input, try again.\n";
-    }while(not valid);
+        if(not isalpha(l1)) cout << "Invalid input, try again.\n";
+    }while(not isalpha(l1));
 
     do{
-        valid = true;
         cout << "Input the letter to replace " << l1 << ": \n";
         cin >> l2;
-        if(not isalpha(l2)) valid = false;
-        if(not valid) cout << "Invalid input, try again.\n";
-    }while(not valid);
+        if(not isalpha(l2)) cout << "Invalid input, try again.\n";
+    }while(not isalpha(l2));
 
     for(unsigned int i = 0; i < stringA.length(); i++){
         if(toupper(stringA[i]) == toupper(l1)) stringA[i] = l2;

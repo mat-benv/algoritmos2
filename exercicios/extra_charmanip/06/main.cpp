@@ -16,18 +16,22 @@ SAÍDA: D OLJHLUD UDSRVD PDUURP VDOWRX VREUH R FDFKRUUR FDQVDGR*/
 int main(){
 
     string phrase, code;
-    char alpha[29]{'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'A', 'B', 'C'};
+    char codeChar;
 
     do{
         cout << "Input a sentence: \n"; getline(cin, phrase);
     }while(phrase.empty());
 
     for(unsigned i = 0; i < phrase.length(); i++){
-        for(unsigned j = 0; j < 29; j++){
-            if(toupper(phrase[i]) == alpha[j]){
-                code = code + alpha[j + 3];
-                break;
+        if(isalpha(phrase[i])){
+            if((phrase[i] > 87 and phrase[i] < 91) or (phrase[i] > 119 and phrase[i] < 123)){
+                phrase[i] = phrase[i] - 23;
+            } else {
+                codeChar = phrase[i] + 3;
+                code = code + codeChar;
             }
+        } else {
+            code = code + phrase[i];
         }
     }
 

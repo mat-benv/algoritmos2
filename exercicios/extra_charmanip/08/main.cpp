@@ -22,7 +22,7 @@ int main(){
     sizeA = strA.length();
     sizeB = strB.length();
 
-    if(strA.length() < sizeB){
+    if(sizeA < sizeB){
         cout << "The first string can't contain the second because it's shorter. \n";
     } else if(strA == strB){
         cout << "The strings are equal. \n";
