@@ -13,7 +13,7 @@ double pol2cm(double pol){
    return pol*2.54;
 }
 
-bool isPositiveFloat(string n){
+bool isPositiveFloat(string &n){
    bool point = false;
    if(n.empty()){
       return false;
@@ -36,7 +36,7 @@ bool isPositiveFloat(string n){
 
 int main(){
    double pol2cm(double);
-   bool isPositiveFloat(string), valid = false;
+   bool isPositiveFloat(string &), valid = false;
    string polString;
    double pol, cm;
 
