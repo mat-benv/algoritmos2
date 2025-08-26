@@ -1,4 +1,6 @@
 **/build/
 */.vscode/
 /.vscode/
+**/.vscode/
 **/output/
+**/useful_functions
