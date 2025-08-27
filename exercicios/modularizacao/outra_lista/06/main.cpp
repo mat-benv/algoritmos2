@@ -15,7 +15,7 @@ void isTwinPrimes(unsigned n){ //range
 
    for(unsigned i = 5; i <= n; i += 2){
       if(isPrime(i) and isPrime(i-2)){
-         cout << i << " and " << i-2 << '\n';
+         cout << i-2 << " and " << i << '\n';
       }
    }
 
