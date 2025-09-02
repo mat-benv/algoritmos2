@@ -32,19 +32,19 @@ int main(){
    int mat[LMAX][LMAX]{0}, columnSum = 0, vec[LMAX]{0};
 
    readMatrixSize_integer(m, n);
-   readMatrix_integer(m, n, mat[][LMAX]);
+   readMatrix_integer(m, n, mat);
 
-   columnSum = matrixColumnSum_integer(m, n, mat[][LMAX]);
+   columnSum = matrixColumnSum_integer(m, n, mat);
    cout << "Soma da coluna: " << columnSum;
 
-   linesProduct2Vector_integer(m, n, mat[][LMAX], vec[]);
-   printIntVector(n, vec[]);
+   linesProduct2Vector_integer(m, n, mat, vec);
+   printIntVector(n, vec, "");
 
-   swapLines_integer(m, n, mat[][LMAX]);
-   printMatrix_integer(m, n, mat[][LMAX]);
+   swapLines_integer(m, n, mat);
+   printMatrix_integer(m, n, mat);
 
-   biggestValuePositionMatrix_integer(m, n, mat[][LMAX], biggestPos, smallestPos);
-   cout << "Biggest: " << biggestPos << " Smallest: " << smallestPos;
+   biggestValuePositionMatrix_integer(m, n, mat, biggestPos, smallestPos);
+   cout << "Biggest: " << biggestPos << " Smallest: " << smallestPos << '\n';
 
    return 0;
 }
@@ -96,7 +96,7 @@ void readMatrixSize_integer(unsigned &m, unsigned &n){
       if(m < LMIN or m > LMAX) cout << "Value out of accepted range. Try between " << LMIN << " and " << LMAX << ". \n";
    }while(m < LMIN or m > LMAX);
    do{
-      n = iinput("How many lines: ", true);
+      n = iinput("How many columns: ", true);
       if(n < LMIN or n > LMAX) cout << "Value out of accepted range. Try between " << LMIN << " and " << LMAX << ". \n";
    }while(n < LMIN or n > LMAX);
 }
