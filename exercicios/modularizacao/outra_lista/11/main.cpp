@@ -12,7 +12,7 @@ double fInput(string);
 bool isPositiveInt(string);
 unsigned iinput(string);
 void equationRoots(double, double, double, double &, double &, unsigned &);
-void firstDegreeEquation(double, double, double &, double &);
+void firstDegreeEquation(double, double, double &, unsigned &);
 
 bool isFloat(string &n){
    bool point = false;
