@@ -28,7 +28,7 @@ void printIntVector(unsigned, int[], string);
 
 int main(){
 
-   unsigned m, n, biggestPos, smallestPos;
+   unsigned m, n, biggestPosM, biggestPosN;
    int mat[LMAX][LMAX]{0}, columnSum = 0, vec[LMAX]{0};
 
    readMatrixSize_integer(m, n);
@@ -43,8 +43,11 @@ int main(){
    swapLines_integer(m, n, mat);
    printMatrix_integer(m, n, mat);
 
-   biggestValuePositionMatrix_integer(m, n, mat, biggestPos, smallestPos);
-   cout << "Biggest: " << biggestPos << " Smallest: " << smallestPos << '\n';
+   if(isSimetrical_integer(m, n, mat))cout << "The matrix is simmetrical.\n";
+   else cout << "The matrix is not simmetrical.\n";
+
+   biggestValuePositionMatrix_integer(m, n, mat, biggestPosM, biggestPosN);
+   cout << "Biggest: " << biggestPosM << ", " << biggestPosN << '\n';
 
    return 0;
 }
@@ -73,8 +76,8 @@ void biggestValuePositionMatrix_integer(unsigned m, unsigned n, int mat[][LMAX],
       for(unsigned j = 0; j < n; j++){
          if(mat[i][j] > value){
             value = mat[i][j];
-            posM = i;
-            posN = j;
+            posM = i+1;
+            posN = j+1;
          }
       }
    }
@@ -82,8 +85,8 @@ void biggestValuePositionMatrix_integer(unsigned m, unsigned n, int mat[][LMAX],
 
 bool isSimetrical_integer(unsigned m, unsigned n, int mat[][LMAX]){
    if(m != n) return false;
-   for(unsigned i = 0; i < m/2; i++){
-      for(unsigned j = 0; j < n/2; j++){
+   for(unsigned i = 0; i < m/2 + 1; i++){
+      for(unsigned j = 0; j < n/2 + 1; j++){
          if(mat[i][j] != mat[j][i]) return false;
       }
    }
@@ -117,6 +120,7 @@ int matrixColumnSum_integer(unsigned m, unsigned n, int mat[][LMAX]){
       column = iinput("Which column to sum: ", false);
       if(column < 1 or column > n) cout << "Invalid input, out of range. \n";
    }while(column < 1 or column > n);
+   column--;
    for(unsigned i = 0; i < m; i++){
       sum += mat[i][column];
    }
@@ -125,7 +129,6 @@ int matrixColumnSum_integer(unsigned m, unsigned n, int mat[][LMAX]){
 
 void swapLines_integer(unsigned m, unsigned n, int mat[][LMAX]){
    unsigned a, b;
-   int aux;
    do{
       a = iinput("Which lines to swap.\n First Line: ", false);
       if(a < 1 or a > m) cout << "Input out of range. \n";
@@ -135,11 +138,10 @@ void swapLines_integer(unsigned m, unsigned n, int mat[][LMAX]){
       if(b < 1 or b > m) cout << "Input out of range. \n";
       if(b == a) cout << "Can't be the same as the first.\n";
    }while(b < 1 or b > m or b == a);
-
+   a--;
+   b--;
    for(unsigned i = 0; i < n; i++){
-      aux = mat[a][i];
-      mat[a][i] = mat[b][i];
-      mat[b][i] = aux;
+      swap(mat[a][i], mat[b][i]);
    }
 }
 
