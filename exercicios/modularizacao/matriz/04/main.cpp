@@ -15,6 +15,7 @@ void printMatrix_integer(unsigned, unsigned, int[][MAX]);
 void readMatrixSize(unsigned &, unsigned &);
 void matrixMultiplication_integer(unsigned, unsigned, unsigned, int[][MAX], int[][MAX], int[][MAX]);
 unsigned matBColumns();
+void randomMatGen(unsigned, unsigned, int[][MAX]);
 
 int main(){
    unsigned n, m, p;
@@ -38,6 +39,15 @@ int main(){
    printMatrix_integer(n, p, matC);
 
    return 0;
+}
+
+void randomMatGen(unsigned n, unsigned m, int mat[][MAX]){
+   srand(time(NULL));
+   for(unsigned i = 0; i< n; i++){
+      for(unsigned j = 0; j < m; j++){
+         mat[i][j] = rand()%19 - 9;
+      }
+   }
 }
 
 void matrixMultiplication_integer(unsigned n, unsigned m, unsigned p, int matA[][MAX], int matB[][MAX], int matC[][MAX]){

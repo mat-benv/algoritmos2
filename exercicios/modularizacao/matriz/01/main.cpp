@@ -85,8 +85,8 @@ void biggestValuePositionMatrix_integer(unsigned m, unsigned n, int mat[][LMAX],
 
 bool isSimetrical_integer(unsigned m, unsigned n, int mat[][LMAX]){
    if(m != n) return false;
-   for(unsigned i = 0; i < m/2 + 1; i++){
-      for(unsigned j = 0; j < n/2 + 1; j++){
+   for(unsigned i = 0; i < m - 1; i++){
+      for(unsigned j = 0; j < n - 1; j++){
          if(mat[i][j] != mat[j][i]) return false;
       }
    }
