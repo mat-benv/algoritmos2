@@ -3,4 +3,7 @@
 /.vscode/
 **/.vscode/
 **/output/
-**/useful_functions
+**/useful_functions.txt
+**/target/
+**/Cargo.lock
+/exercicios_em_rust/
