@@ -8,7 +8,7 @@ bool isPrime(unsigned);
 bool isPositiveInt(string);
 unsigned iinput(string);
 unsigned nextPrime(unsigned);
-string ordinalSuffix(unsigned);
+string ordinal_suffix(unsigned);
 
 bool isPrime(unsigned n){
     if(n < 2) return false;
@@ -45,7 +45,7 @@ unsigned nextPrime(unsigned n){
     }
 }
 
-string ordinalSuffix(unsigned n){
+string ordinal_suffix(unsigned n){
     switch(n){
         case 1: return "st";
             break;
@@ -66,7 +66,7 @@ int main(){
 
     n = iinput("How many numbers: ");
     for(unsigned i = 0; i < n; i++){
-        cout << "Input "<< i + 1 << ordinalSuffix(i + 1) << " number: \n";
+        cout << "Input "<< i + 1 << ordinal_suffix(i + 1) << " number: \n";
         x = iinput("");
         if(isPrime(x)){
             y = nextPrime(x);

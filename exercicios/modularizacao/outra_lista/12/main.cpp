@@ -17,9 +17,9 @@ unsigned iinput(string);
 bool isFloat(string &);
 double finput(string);
 void gravMeasureForAvg(double, unsigned, double &);
-string ordinalSuffix(unsigned);
+string ordinal_suffix(unsigned);
 
-string ordinalSuffix(unsigned n){
+string ordinal_suffix(unsigned n){
     switch(n){
         case 1: return "st";
             break;
@@ -92,7 +92,7 @@ int main(){
 
     n = iinput("How many measurements: ");
     for(unsigned i = 0; i < n; i++){
-        cout << i + 1 << ordinalSuffix(i+1) << " measurement: \n";
+        cout << i + 1 << ordinal_suffix(i+1) << " measurement: \n";
         do{
             y = finput("How high was the building is meters: ");
             if(y <= 0.0) cout << "Height can't me zero or less.";

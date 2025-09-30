@@ -12,7 +12,7 @@ bool isFloat(string &);
 double finput(string);
 bool isPositiveInt(string);
 unsigned iinput(string);
-string ordinalSuffix(unsigned);
+string ordinal_suffix(unsigned);
 unsigned readVectorSize(string, unsigned, unsigned);
 void readFloatVecValues(unsigned, double[]);
 void floatDirectSelectionSort(unsigned, double[]);
@@ -63,7 +63,7 @@ void printFloatVector(unsigned n, double vec[], string msg=""){
    cout << '\n';
 }
 
-string ordinalSuffix(unsigned n){
+string ordinal_suffix(unsigned n){
     switch(n){
         case 1: return "st";
             break;
@@ -134,7 +134,7 @@ unsigned readVectorSize(string msg, unsigned min, unsigned max){
 
 void readFloatVecValues(unsigned n, double vec[]){
    for(unsigned i = 0; i < n; i++){
-      cout << "Input " << i+1 << ordinalSuffix(i+1) << " value:";
+      cout << "Input " << i+1 << ordinal_suffix(i+1) << " value:";
       vec[i] = finput("");
    }
 }

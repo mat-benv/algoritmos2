@@ -15,7 +15,7 @@ double finput(string);
 bool isPositiveInt(string);
 unsigned iinput(string);
 void lerNomeENota(unsigned, string[], double[]);
-string ordinalSuffix(unsigned);
+string ordinal_suffix(unsigned);
 double floatVectorValuesAvg(unsigned, double[]);
 void studentsOverAndUnderClassAvg(unsigned, double, string[], double[]);
 
@@ -36,7 +36,7 @@ int main(){
    return 0;
 }
 
-string ordinalSuffix(unsigned n){
+string ordinal_suffix(unsigned n){
     switch(n){
         case 1: return "st";
             break;
@@ -99,7 +99,7 @@ double finput(string msg){ //change type as needed, useful parameters can also b
 
 void lerNomeENota(unsigned n, string vecNomes[], double vecNotas[]){
    for(unsigned i = 0; i < n; i++){
-      cout << "Input the " << i + 1 << ordinalSuffix(i+1) << " student's name: \n";
+      cout << "Input the " << i + 1 << ordinal_suffix(i+1) << " student's name: \n";
       getline(cin, vecNomes[i]);
       do{
          vecNotas[i] = finput("Input their grade: ");
