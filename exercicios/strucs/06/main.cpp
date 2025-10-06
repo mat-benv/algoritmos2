@@ -8,15 +8,15 @@ Construa um algoritmo que escreva o nome do vendedor, a quantidade vendida, o
 valor da venda, o salário fixo, a comissão e o total recebido. Os nomes dos
 vendedores devem ser relacionados em ordem alfabética.*/
 
-/* NÃO TERMINADO */
-
 #include <iostream>
 
 typedef struct {
    std::string nome;
    unsigned qtdVendida;
-   double valorVenda, salarioFixo, comissao, pagamentoTotal;
+   double valorVenda, salarioFixo, comissao=0.0, pagamentoTotal=0.0;
 } Vendedor;
+
+#define QTDVEND 5
 
 void cacular_comissao(Vendedor &v){
    if(v.qtdVendida < 15){
@@ -29,21 +29,45 @@ void cacular_comissao(Vendedor &v){
 }
 
 void cacular_pagamento(Vendedor &v){
+   cacular_comissao(v);
    v.pagamentoTotal = v.salarioFixo + v.comissao;
 }
 
-void imprime_vendedores(Vendedor v[]){
+void ordena_vendedores(unsigned n, Vendedor v[]){
+   unsigned pos;
+   for(unsigned i = 0; i < n-1; i++){
+      pos = i;
+      for(unsigned j = i+1; j < n; j++){
+         if(v[j].nome < v[pos].nome){
+            pos = j;
+         }
+      }
+      std::swap(v[i], v[pos]);
+   }
+}
 
+void imprime_vendedores(unsigned n, Vendedor v[]){
+   ordena_vendedores(n, v);
+   for(unsigned i = 0; i < n; i++){
+      cacular_pagamento(v[i]);
+      std::cout << v[i].nome << ": \nQtd. Vendida: " << v[i].qtdVendida
+         << "\nValor das vendas: " << v[i].valorVenda << "\nSalário: " << v[i].salarioFixo
+         << "\nComissão: " << v[i].comissao << "\nPagamento total: " << v[i].pagamentoTotal
+         <<"\n\n";
+   }
 }
 
 int main(){
 
-   Vendedor vendedores[5]{{"Ana Silva", 12, 5000.00},
-      {"Carlos Santos", 20, 8000.00}, 
-      {"Bruno Costa", 35, 12000.00},
-      {"Diana Oliveira", 8, 3500.00},
-      {"Eduardo Lima", 25, 9500.00}
+   Vendedor vendedores[QTDVEND]{
+      {"Carlos Santos", 20, 8000.00, 1500.00}, 
+      {"Bruno Costa", 35, 12000.00, 1500.00},
+      {"Eduardo Lima", 25, 9500.00, 1500.00},
+      {"Diana Oliveira", 8, 3500.00, 1500.00},
+      {"Ana Silva", 12, 5000.00, 1500.00}
    };
+
+   imprime_vendedores(QTDVEND, vendedores);
 
    return 0;
 }
