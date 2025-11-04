@@ -7,3 +7,4 @@
 **/target/
 **/Cargo.lock
 /exercicios_em_rust/
+**/tests/
