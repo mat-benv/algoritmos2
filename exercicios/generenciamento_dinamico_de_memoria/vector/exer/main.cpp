@@ -84,13 +84,23 @@ bool equals(vector<int> a, vector<int> b){
     return true;
 }
 
-bool same_set(vector<int> a, vector<int> b){
-    for(vector<int>::iterator i = a.begin(); i != a.end(); i++){
-        for(vector<int>::iterator j = b.begin(); j != b.end(); j++){
-            if(*i != *j) return false;
+bool contains(vector<int> a, vector<int> b){
+    bool check;
+    for(vector<int>::iterator i = b.begin(); i != b.end(); i++){
+        check = false;
+        for(vector<int>::iterator j = a.begin(); j != a.end(); j++){
+            if(*i == *j){
+                check = true;
+                break;
+            }
         }
+        if(not check) return false;
     }
     return true;
+}
+
+bool same_set(vector<int> a, vector<int> b){
+    return contains(a,b) and contains(b,a);
 }
 
 int partition(vector<int> &a, int low, int high){
@@ -140,7 +150,6 @@ int main(){
     vector<double> a{1.0, 2.0, 3.0}, b{4.0, 5.0, 6.0};
     vector<int> c{1,4,6,2,3}, d{0,8,5}, g{1,2,3,5,9}, h{2,4,5,7},
                 m{1,2,3,4}, n{3,2,4,1}, p{3,3,4,3,2,1,2};
-
     std::cout << "Produto escalar: \n" << scalar_product(a, b); //1
     std::cout << std::endl;
     std::cout << "Soma alternada\n" << alternated_sum(c) << std::endl; //2
