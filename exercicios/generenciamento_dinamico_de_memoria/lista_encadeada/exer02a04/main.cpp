@@ -39,7 +39,23 @@ void insert_after_80(ValorInteiro* p, int a){ //3
     std::cout << "80 não encontrado.\n";
 }
 
-//TODO exer 04
+void delete_first_occurence(ValorInteiro* &ptrlista, int a){ //4
+    ValorInteiro *aux = ptrlista, *ptrAnt = ptrlista;
+    if(aux->valor == a){
+        ptrlista = aux->next;
+        delete aux;
+        return;
+    }
+    while(aux != NULL and aux->valor != a){
+        ptrAnt = aux;
+        aux = aux->next;
+    }
+    if(aux != NULL){
+        ptrAnt->next = aux->next;
+        delete aux;
+        return;
+    }
+}
 
 int main(){
     
