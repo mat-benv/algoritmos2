@@ -5,8 +5,6 @@ deve ser informado pelo usuário.*/
 #include <iostream>
 #include <fstream>
 
-//TODO
-
 std::string get_name(std::string infileName){
     std::string outfileName = "";
     int i = 0;
@@ -17,14 +15,112 @@ std::string get_name(std::string infileName){
     return outfileName + ".xxx";
 }
 
-void remove_comment(std::string fileName){
+void remove_comment(std::string fileName)
+{
     char ch;
     std::string outfileName = get_name(fileName);
     std::ifstream fin(fileName.c_str());
     std::ofstream fout(outfileName.c_str());
-    while(fin.get(ch)){
-        if(ch == '/'){
-
+    bool quotes = false, slash = false, longComment = false, lineComment = false, star = false;
+    while(fin.get(ch))
+    {
+        if(lineComment) //comentario de linha
+        {
+            if(ch == '\n') // fim de linha
+            {
+                lineComment = false;
+                fout << ch;
+                continue;
+            } else continue;
+        }
+        else if(longComment) // comentario /* */
+        {
+            if(star) // se *
+            {
+                if(ch == '/') //fecha comentario
+                {
+                    longComment = false;
+                    star = false;
+                    continue;
+                }
+                else
+                {
+                    star = false; 
+                    fout << '*' << ch;
+                    continue;
+                }
+            }
+            else
+            {
+                if(ch == '*')
+                {
+                    star = true;
+                    continue;
+                }
+                else
+                {
+                    continue;
+                }
+            }
+        }
+        else if(quotes)
+        {
+            if(ch == '"')
+            {
+                fout << ch;
+                quotes = false;
+                continue;
+            }
+            else
+            {
+                fout << ch;
+                continue;
+            }
+        }
+        else
+        {
+            if(slash)
+            {
+                slash = false;
+                if(ch == '/')
+                {
+                    lineComment = true;
+                    continue;
+                }
+                else if(ch == '*')
+                {
+                    longComment = true;
+                    continue;
+                }
+                else
+                {
+                    fout << '/' << ch;
+                    continue;
+                }
+            }
+            else
+            {
+                switch (ch)
+                {
+                case '/':
+                    slash = true;
+                    break;
+                case '"':
+                    fout << ch;
+                    quotes = true;
+                    break;
+                default:
+                    fout << ch;
+                    break;
+                }
+            }
         }
     }
+    fin.close();
+    fout.close();
+}
+
+int main(){
+    remove_comment("../main.cpp");
+    return 0;
 }
