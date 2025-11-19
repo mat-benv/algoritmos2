@@ -1,6 +1,4 @@
-/*Escreva um programa que leia um programa fonte C++ e retire os comentários deste programa fonte. O
-novo arquivo deve ser gravado com o mesmo nome, porém com extensão xxx. O arquivo de entrada
-deve ser informado pelo usuário.*/
+
 
 #include <iostream>
 #include <fstream>
@@ -24,20 +22,20 @@ void remove_comment(std::string fileName)
     bool quotes = false, slash = false, longComment = false, lineComment = false, star = false;
     while(fin.get(ch))
     {
-        if(lineComment) //comentario de linha
+        if(lineComment) 
         {
-            if(ch == '\n') // fim de linha
+            if(ch == '\n') 
             {
                 lineComment = false;
                 fout << ch;
                 continue;
             } else continue;
         }
-        else if(longComment) // comentario /* */
+        else if(longComment) 
         {
-            if(star) // se *
+            if(star) 
             {
-                if(ch == '/') //fecha comentario
+                if(ch == '/') 
                 {
                     longComment = false;
                     star = false;
